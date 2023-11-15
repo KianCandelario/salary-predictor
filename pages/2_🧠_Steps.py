@@ -137,20 +137,21 @@ with st.container():
             
     """, language="python", line_numbers=True)
 
-    st.caption("Output:")
-    # Creating tabs
-    tab1, tab2, tab3 = st.tabs(["Records", "Education Levels", "Job Titles"])
-    head_df = df_dup.head(10) # Getting the first 10 records
+    with st.expander("View the Output"):
+        st.caption("Output:")
+        # Creating tabs
+        tab1, tab2, tab3 = st.tabs(["Records", "Education Levels", "Job Titles"])
+        head_df = df_dup.head(10) # Getting the first 10 records
 
-    with tab1:
-        st.caption("First 10 records of the dataset")
-        st.dataframe(head_df)
-    with tab2:
-        st.caption("Education Level Unique Values")
-        st.write(f"- There are **{len(DF['Education Level'].unique())} unique values.**")
-    with tab3:
-        st.caption("Job Title Unique Values")
-        st.write(f"- There are **{len(DF['Job Title'].unique())} unique values.**")
+        with tab1:
+            st.caption("First 10 records of the dataset")
+            st.dataframe(head_df)
+        with tab2:
+            st.caption("Education Level Unique Values")
+            st.write(f"- There are **{len(DF['Education Level'].unique())} unique values.**")
+        with tab3:
+            st.caption("Job Title Unique Values")
+            st.write(f"- There are **{len(DF['Job Title'].unique())} unique values.**")
 
 # Step 3
 with st.container():
@@ -180,27 +181,28 @@ with st.container():
             
     """, language="python", line_numbers=True)
 
-    st.caption("Output:")
-    # Creating tabs
-    tab1, tab2, tab3 = st.tabs(["Dataset info", "Summary Statistics", "Salary vs Years of Experience"])
+    with st.expander("View the Output"):
+        st.caption("Output:")
+        # Creating tabs
+        tab1, tab2, tab3 = st.tabs(["Dataset info", "Summary Statistics", "Salary vs Years of Experience"])
 
-    with tab1:
-        st.caption("Basic information about the dataset")
-        buffer = io.StringIO()
-        df_dup.info(buf=buffer)
+        with tab1:
+            st.caption("Basic information about the dataset")
+            buffer = io.StringIO()
+            df_dup.info(buf=buffer)
 
-        # Get the printed information as a string
-        info_text = buffer.getvalue()
+            # Get the printed information as a string
+            info_text = buffer.getvalue()
 
-        # Display the information
-        st.text(info_text)
+            # Display the information
+            st.text(info_text)
 
-    with tab2:
-        st.caption("Summary Statistics of numeric data")
-        st.dataframe(df_dup.describe())
-    with tab3:
-        st.caption("Scatterplot of Salary vs Years of Experience")
-        st.scatter_chart(df_to_plot, x="Years of Experience", y="Salary")
+        with tab2:
+            st.caption("Summary Statistics of numeric data")
+            st.dataframe(df_dup.describe())
+        with tab3:
+            st.caption("Scatterplot of Salary vs Years of Experience")
+            st.scatter_chart(df_to_plot, x="Years of Experience", y="Salary")
 
 # Step 4
 with st.container():
@@ -230,9 +232,10 @@ with st.container():
             
     """, language="python", line_numbers=True)
     
-    st.caption("Output:")
-    st.write("Final Dataset")
-    st.dataframe(final_df)
+    with st.expander("View the Output"):
+        st.caption("Output:")
+        st.write("Final Dataset")
+        st.dataframe(final_df)
 
 # Step 5
 with st.container():
@@ -262,9 +265,10 @@ with st.container():
 
     """, language="python", line_numbers=True)
 
-    st.caption("Output:")
-    st.write("Based on the results, the top three features are: (1) Years of Experience, (2) Job Title, (3) Education Level.")
-    st.dataframe(feat_scores.sort_values(by='Score'))
+    with st.expander("View the Output"):
+        st.caption("Output:")
+        st.write("Based on the results, the top three features are: (1) Years of Experience, (2) Job Title, (3) Education Level.")
+        st.dataframe(feat_scores.sort_values(by='Score'))
 
 # Step 6
 with st.container():
@@ -327,13 +331,14 @@ with st.container():
 
     """, language="python", line_numbers=True)
 
-    st.caption("Output:")
-    tab1, tab2 = st.tabs(["Regression Metrics", "Predicted Salary vs Actual Salary"])
-    with tab1:
-        st.write("**Regression Metrics**")
-        st.write(f"- Mean Absolute Error (MEA): {mea}")
-        st.write(f"- Out-of-bag score (OOB): {random_frst_oob.oob_score_}")
-    with tab2:
-        st.write("Comparison between the predicted salary and actual salary.")
-        # Display the scatter chart
-        st.scatter_chart(data=comparison_data, x="Years of Experience", y=["Actual Salary", "Predicted Salary"])
+    with st.expander("View the Output"):
+        st.caption("Output:")
+        tab1, tab2 = st.tabs(["Regression Metrics", "Predicted Salary vs Actual Salary"])
+        with tab1:
+            st.write("**Regression Metrics**")
+            st.write(f"- Mean Absolute Error (MEA): {mea}")
+            st.write(f"- Out-of-bag score (OOB): {random_frst_oob.oob_score_}")
+        with tab2:
+            st.write("Comparison between the predicted salary and actual salary.")
+            # Display the scatter chart
+            st.scatter_chart(data=comparison_data, x="Years of Experience", y=["Actual Salary", "Predicted Salary"])
