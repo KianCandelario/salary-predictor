@@ -23,7 +23,7 @@ css('./styles/styles.css')
 
 # --- Title section (brief introduction of the project)
 with st.container():
-    left_column, right_column = st.columns(2)
+    left_column, right_column = st.columns([2, 1])
     with left_column:
         st.title("Salary Predictor :money_with_wings:")
 
@@ -31,4 +31,4 @@ with st.container():
         st.write("This project uses *Random Forest Regressor*— a machine learning regression algorithm— to predict the potential salary of a person. It uses a dataset that contains data such as  *Age, Gender, Education level, Job title, and Years of Experience*.")
         st.write("**NOTE:** The dataset used in this project was **large language models generated** and **not collected from actual data sources**. To learn more about the dataset, [click here](https://www.kaggle.com/datasets/rkiattisak/salaly-prediction-for-beginer).")
     with right_column:
-        st_lottie(animation, height=330, key="salary")
+        st_lottie(animation, height=350,  key="salary")
